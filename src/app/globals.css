@@ -358,26 +358,6 @@ nav{
   background: radial-gradient(circle at 60% 40%, var(--sand), transparent 70%);
   opacity: 0.45;
 }
-.hero-leaves{
-  position: absolute;
-  top: -16px;
-  width: 320px;
-  height: 180px;
-  z-index: 0;
-  opacity: 0.85;
-  pointer-events: none;
-}
-.hero-leaves-left{ left: -60px; }
-.hero-leaves-right{ right: -60px; transform: scaleX(-1); }
-@media (max-width: 900px){
-  .hero-leaves{ width: 220px; height: 130px; }
-  .hero-leaves-left{ left: -50px; }
-  .hero-leaves-right{ right: -50px; }
-}
-@media (max-width: 560px){
-  .hero-leaves{ width: 160px; height: 100px; opacity: 0.7; }
-}
-
 /* ===== HERO PHOTO ===== */
 .hero-illustration-img{
   animation: hero-float 6s ease-in-out infinite;

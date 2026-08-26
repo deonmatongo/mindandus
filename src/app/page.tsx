@@ -57,26 +57,6 @@ export default function Home() {
       <section className="hero">
         <div className="blob blob-1"></div>
         <div className="blob blob-2"></div>
-        <div className="hero-leaves hero-leaves-left" aria-hidden="true">
-          <Image
-            src="/hero-leaves.png"
-            alt=""
-            fill
-            loading="eager"
-            sizes="420px"
-            style={{ objectFit: "contain", objectPosition: "top left" }}
-          />
-        </div>
-        <div className="hero-leaves hero-leaves-right" aria-hidden="true">
-          <Image
-            src="/hero-leaves.png"
-            alt=""
-            fill
-            loading="eager"
-            sizes="420px"
-            style={{ objectFit: "contain", objectPosition: "top right" }}
-          />
-        </div>
         <div className="wrap hero-grid">
           <div>
             <p className="eyebrow">Zimbabwe · Diaspora · Mental wellness</p>
