@@ -255,7 +255,12 @@ nav{
   position: relative;
   padding: 88px 0 100px;
   overflow: hidden;
-  background: var(--hero-tint);
+  background-color: var(--hero-tint);
+  background-image: linear-gradient(rgba(244, 246, 241, 0.82), rgba(244, 246, 241, 0.82)),
+    url("/hero-bg-pattern.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .hero-grid{
   position: relative;
