@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,6 +25,19 @@ const columns = [
 ];
 
 export default function Footer() {
+  const barRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    const el = barRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setHeight(entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <section className="in-short">
@@ -65,16 +81,26 @@ export default function Footer() {
             ))}
           </div>
 
-          <div className="footer-bottom">
-            <p className="footer-disclaimer">
-              Mind&amp;Us is a mental-wellness concept currently in
-              development. It is not a registered NGO, a diagnostic
-              service, or a substitute for professional care.
-            </p>
-            <span className="footer-copyright">© 2026 Mind&amp;Us</span>
-          </div>
+          <p className="footer-disclaimer">
+            Mind&amp;Us is a mental-wellness concept currently in
+            development. It is not a registered NGO, a diagnostic
+            service, or a substitute for professional care.
+          </p>
         </div>
       </footer>
+
+      <div style={{ height }} aria-hidden="true" />
+
+      <div ref={barRef} className="footer-bar">
+        <div className="wrap footer-bar-inner">
+          <Link href="/" className="footer-bar-mark">
+            <Image src="/mind-and-us-mark.png" alt="Mind&Us" width={22} height={22} />
+            <span>Mind&amp;Us</span>
+          </Link>
+          <span className="footer-copyright">© 2026 Mind&amp;Us</span>
+          <Link href="/get-involved#contact" className="footer-bar-link">Contact</Link>
+        </div>
+      </div>
     </>
   );
 }
