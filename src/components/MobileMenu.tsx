@@ -11,7 +11,7 @@ export default function MobileMenu() {
     <div className="mobile-nav">
       <button
         type="button"
-        className="menu-toggle"
+        className={`menu-toggle${open ? " open" : ""}`}
         aria-expanded={open}
         aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((v) => !v)}
