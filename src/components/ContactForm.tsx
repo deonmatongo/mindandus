@@ -2,40 +2,34 @@
 
 import { useState, type FormEvent } from "react";
 
-const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+const whatsappNumber = "48514110168";
 
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sent";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!formspreeId) {
-      setStatus("sent");
-      return;
-    }
-
-    setStatus("sending");
     const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = data.get("name");
+    const email = data.get("email");
+    const message = data.get("message");
 
-    try {
-      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
-      });
-      setStatus(response.ok ? "sent" : "error");
-    } catch {
-      setStatus("error");
-    }
+    const text = `New message from Mind&Us website\n\nName: ${name}\nEmail: ${email}\n\n${message}`;
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+    setStatus("sent");
   }
 
   if (status === "sent") {
     return (
       <p className="form-note">
-        Thank you — your message is on its way to the Mind&amp;Us team.
+        We&apos;ve opened WhatsApp with your message ready — just hit
+        send there to reach the Mind&amp;Us team.
       </p>
     );
   }
@@ -54,20 +48,13 @@ export default function ContactForm() {
         <label htmlFor="message">Message</label>
         <textarea id="message" name="message" rows={5} required />
       </div>
-      <button type="submit" className="btn btn-primary" disabled={status === "sending"}>
-        {status === "sending" ? "Sending…" : "Send message"}
+      <button type="submit" className="btn btn-primary">
+        Send via WhatsApp
       </button>
-      {status === "error" && (
-        <p className="form-note">
-          Something went wrong sending that — please try again in a
-          moment.
-        </p>
-      )}
-      {!formspreeId && (
-        <p className="form-note">
-          This preview isn&apos;t wired up to a real inbox yet.
-        </p>
-      )}
+      <p className="form-note">
+        Sending this opens WhatsApp with your message pre-filled to the
+        Mind&amp;Us team.
+      </p>
     </form>
   );
 }
