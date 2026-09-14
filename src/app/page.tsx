@@ -72,7 +72,12 @@ export default function Home() {
               <div className="hero-actions">
                 <a href="#pillars" className="btn btn-primary btn-pill">
                   Explore the four pillars
-                  <span className="btn-arrow-circle" aria-hidden="true">↗</span>
+                  <span className="btn-arrow-circle" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </span>
                 </a>
               </div>
 
@@ -107,7 +112,11 @@ export default function Home() {
                     </text>
                   </svg>
                   <span className="spin-badge-center">
-                    Find support <span aria-hidden="true">↗</span>
+                    Find support
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
                   </span>
                 </Link>
               </div>
