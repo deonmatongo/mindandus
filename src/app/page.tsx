@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import TypingHeadline from "@/components/TypingHeadline";
+import HeroCarousel from "@/components/HeroCarousel";
 
 const stripItems = ["EDUCATE", "CONNECT", "EMPOWER", "RESEARCH"];
 
@@ -55,41 +56,69 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <div className="blob blob-1"></div>
-        <div className="blob blob-2"></div>
-        <div className="wrap hero-grid">
-          <div>
-            <p className="eyebrow">Zimbabwe · Diaspora · Mental wellness</p>
-            <h1>
-              <TypingHeadline />
-            </h1>
-            <p className="lede">
-              Mind&amp;Us is a mental-wellness initiative for Zimbabweans
-              at home and across the diaspora — built to move the
-              conversation from awareness, to understanding, to
-              conversation, to support, to change.
-            </p>
-            <p className="motto">Gentle toward the person. Bold toward the problem.</p>
-            <div className="hero-actions">
-              <a href="#pillars" className="btn btn-primary">Explore the four pillars</a>
-              <Link href="/support" className="btn btn-ghost">Find support</Link>
-            </div>
-            <p className="hero-note">
-              ◦ Mind&amp;Us is currently in the concept &amp; development
-              stage — <Link href="/about#status">see where we are</Link>
-            </p>
-          </div>
+        <div className="wrap">
+          <div className="hero-card-grid">
+            <div className="hero-content">
+              <p className="eyebrow">Zimbabwe · Diaspora · Mental wellness</p>
+              <h1>
+                <TypingHeadline />
+              </h1>
+              <p className="lede">
+                Mind&amp;Us is a mental-wellness initiative for Zimbabweans
+                at home and across the diaspora — built to move the
+                conversation from awareness, to understanding, to
+                conversation, to support, to change.
+              </p>
+              <div className="hero-actions">
+                <a href="#pillars" className="btn btn-primary btn-pill">
+                  Explore the four pillars
+                  <span className="btn-arrow-circle" aria-hidden="true">↗</span>
+                </a>
+              </div>
 
-          <div className="hero-photo">
-            <Image
-              src="/hero-illustration.png"
-              alt="Illustration of a head in profile, filled with a meditating figure, hills, sunrise, a butterfly and flowering leaves"
-              fill
-              priority
-              sizes="(max-width: 900px) 100vw, 50vw"
-              className="hero-illustration-img"
-              style={{ objectFit: "contain" }}
-            />
+              <div className="hero-secondary-row">
+                <div className="hero-mini-card">
+                  <div className="hero-mini-img">
+                    <Image
+                      src="/hero-illustration.png"
+                      alt=""
+                      fill
+                      sizes="64px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                  <div>
+                    <p className="hero-mini-title">Gentle &amp; bold</p>
+                    <p className="hero-mini-sub">Gentle toward the person. Bold toward the problem.</p>
+                  </div>
+                </div>
+
+                <Link href="/support" className="spin-badge" aria-label="Find support">
+                  <svg viewBox="0 0 100 100" className="spin-badge-ring" aria-hidden="true">
+                    <path
+                      id="heroSpinPath"
+                      fill="none"
+                      d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
+                    />
+                    <text>
+                      <textPath href="#heroSpinPath" startOffset="0%">
+                        FIND SUPPORT &nbsp;•&nbsp; FIND SUPPORT &nbsp;•&nbsp; FIND SUPPORT &nbsp;•&nbsp;
+                      </textPath>
+                    </text>
+                  </svg>
+                  <span className="spin-badge-center">
+                    Find support <span aria-hidden="true">↗</span>
+                  </span>
+                </Link>
+              </div>
+
+              <p className="hero-note">
+                ◦ Mind&amp;Us is currently in the concept &amp; development
+                stage — <Link href="/about#status">see where we are</Link>
+              </p>
+            </div>
+
+            <HeroCarousel />
           </div>
         </div>
       </section>
